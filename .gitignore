@@ -5,6 +5,7 @@
 *.so
 *.dylib
 gophericser-extended-example
+myowngopherciser
 
 # Test binary, built with `go test -c`
 *.test
@@ -17,3 +18,6 @@ gophericser-extended-example
 
 # IDE's
 .idea
+
+# log files
+logs/

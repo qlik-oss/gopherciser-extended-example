@@ -1,0 +1,88 @@
+{
+  "scenario": [
+    {
+      "action": "openhub",
+      "label": "open hub",
+      "disabled": false,
+      "settings": {}
+    },
+    {
+      "action": "thinktime",
+      "label": "think for 10-15s",
+      "disabled": false,
+      "settings": {
+        "type": "uniform",
+        "mean": 15,
+        "dev": 5
+      }
+    },
+    {
+      "action": "openapp",
+      "label": "open app",
+      "disabled": false,
+      "settings": {
+        "appmode": "name",
+        "app": "Ctrl00_allObj"
+      }
+    },
+    {
+      "action": "thinktime",
+      "label": "think for 10-15s",
+      "disabled": false,
+      "settings": {
+        "type": "uniform",
+        "mean": 15,
+        "dev": 5
+      }
+    },
+    {
+      "action": "slacknotify",
+      "settings" : {
+        "webhook": "https://hooks.slack.com/services/MY/SLACK/WEBHOOK",
+        "msg" : "`{{.UserName}}` successfully finished session<{{.Session}}> thread<{{.Thread}}> warnings<{{.Local.Warnings}}>"
+      }
+    }
+  ],
+  "settings": {
+    "timeout": 300,
+    "logs": {
+      "filename": "./logs/slacknotifier.tsv",
+      "traffic": true
+    },
+    "outputs": {
+      "dir": ""
+    }
+  },
+  "loginSettings": {
+    "type": "prefix",
+    "settings": {
+      "prefix": "testuser"
+    }
+  },
+  "connectionSettings": {
+    "mode": "ws",
+    "server": "myWindowsServerWithHeaderAuth",
+    "virtualproxy": "header",
+    "security": true,
+    "allowuntrusted": true,
+    "headers": {
+      "X-Qlik-User-Header": "{{.UserName}}"
+    }
+  },
+  "scheduler": {
+    "type": "simple",
+    "iterationtimebuffer": {
+      "mode": "onerror",
+      "duration": "10s"
+    },
+    "instance": 1,
+    "settings": {
+      "executionTime": -1,
+      "iterations": 2,
+      "rampupDelay": 7,
+      "concurrentUsers": 2,
+      "reuseUsers": false,
+      "onlyinstanceseed": false
+    }
+  }
+}
