@@ -196,6 +196,8 @@ github.com/qlik-oss/gopherciser v0.5.8 h1:hzEzck8VaAaeKhmyWw62kBGVVvT5y9e5jc6P9M
 github.com/qlik-oss/gopherciser v0.5.8/go.mod h1:mSKKDBaZ1TG90R59IGsGw8k++fqbEzT3MA6jzLQ6/fk=
 github.com/qlik-oss/gopherciser v0.6.1 h1:xZeCQ1etZUIyW4agt6m+4ZkFQGm8+1r9P69VD7il3FU=
 github.com/qlik-oss/gopherciser v0.6.1/go.mod h1:JWJzgvS95sz/llBQp7J4FTQpcgJg15+u7pfnUNazfNc=
+github.com/qlik-oss/gopherciser v0.6.2 h1:kxyU6BpeojzUb8O2NhGBPAFC+Zf3vcPZTU/y34pjVMs=
+github.com/qlik-oss/gopherciser v0.6.2/go.mod h1:JWJzgvS95sz/llBQp7J4FTQpcgJg15+u7pfnUNazfNc=
 github.com/rogpeppe/fastuuid v0.0.0-20150106093220-6724a57986af/go.mod h1:XWv6SoW27p1b0cqNHllgS5HIMJraePCO15w5zCzIWYg=
 github.com/rs/xid v1.2.1/go.mod h1:+uKXf+4Djp6Md1KODXJxgGQPKngRmWyn10oCKFzNHOQ=
 github.com/rs/zerolog v1.19.0 h1:hYz4ZVdUgjXTBUmrkrw55j1nHx68LfOKIQk5IYtyScg=
