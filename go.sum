@@ -377,6 +377,8 @@ github.com/qlik-oss/gopherciser v0.6.14 h1:sTb7zObsKjuHSf8JVwJ7cSe+9PDHiSn1sBcQU
 github.com/qlik-oss/gopherciser v0.6.14/go.mod h1:68sSYWJFML6+pE2KJcM0zTJi/uwFxFisoNC3P+xN1LU=
 github.com/qlik-oss/gopherciser v0.6.15 h1:HDAgKriE9WjHupGrR5mjQew7CStnpnni4sjfAePtJ1E=
 github.com/qlik-oss/gopherciser v0.6.15/go.mod h1:68sSYWJFML6+pE2KJcM0zTJi/uwFxFisoNC3P+xN1LU=
+github.com/qlik-oss/gopherciser v0.6.16 h1:BjXMtZpXZhHcGR4gal9/jdSGKGQEWQqMg0vUnHurCcU=
+github.com/qlik-oss/gopherciser v0.6.16/go.mod h1:68sSYWJFML6+pE2KJcM0zTJi/uwFxFisoNC3P+xN1LU=
 github.com/rcrowley/go-metrics v0.0.0-20181016184325-3113b8401b8a/go.mod h1:bCqnVzQkZxMG4s8nGwiZ5l3QUCyqpo9Y+/ZMZ9VjZe4=
 github.com/rogpeppe/fastuuid v0.0.0-20150106093220-6724a57986af/go.mod h1:XWv6SoW27p1b0cqNHllgS5HIMJraePCO15w5zCzIWYg=
 github.com/rogpeppe/go-internal v1.3.0/go.mod h1:M8bDsm7K2OlrFYOpmOWEs/qY81heoFRclV5y23lUDJ4=
