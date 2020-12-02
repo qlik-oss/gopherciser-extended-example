@@ -343,6 +343,8 @@ github.com/qlik-oss/enigma-go v1.1.3-0.20200629052521-574b1c3aa72a h1:ZeHtEdkOc3
 github.com/qlik-oss/enigma-go v1.1.3-0.20200629052521-574b1c3aa72a/go.mod h1:7gMoEGPogCXKOQEdKoTcdP6Zxir3rvHf7a8NNDaLRg4=
 github.com/qlik-oss/enigma-go v1.1.3-0.20201123100452-a3c384ed3b1a h1:Hc8ijq+Ah41q1L4YVV0Gca7Y0CU4TUFKXlj1nTY4m/A=
 github.com/qlik-oss/enigma-go v1.1.3-0.20201123100452-a3c384ed3b1a/go.mod h1:lRHGLlIctWI9jqviDJu9NJdTkTP9HRA4LzEAMkmLtDI=
+github.com/qlik-oss/enigma-go v1.2.0 h1:VwecNfDd3XsYmTrXCHC9A0GPi/KIbxv6DC3EkcTsPpM=
+github.com/qlik-oss/enigma-go v1.2.0/go.mod h1:lRHGLlIctWI9jqviDJu9NJdTkTP9HRA4LzEAMkmLtDI=
 github.com/qlik-oss/gopherciser v0.5.7-0.20200717121239-72d16463f881 h1:zwbAWjgRn3lJbwWa0qsUr67XQfWldRr2op9ejAn6ti0=
 github.com/qlik-oss/gopherciser v0.5.7-0.20200717121239-72d16463f881/go.mod h1:qSi3jlCeJKOeSeTpecQrDclL5kLIZHtkDwGs9KQKaz0=
 github.com/qlik-oss/gopherciser v0.5.7 h1:GjUTltv6rKekH/3lobpUgNIirfDEGT133NCcRQjAry0=
@@ -383,6 +385,8 @@ github.com/qlik-oss/gopherciser v0.6.16 h1:BjXMtZpXZhHcGR4gal9/jdSGKGQEWQqMg0vUn
 github.com/qlik-oss/gopherciser v0.6.16/go.mod h1:68sSYWJFML6+pE2KJcM0zTJi/uwFxFisoNC3P+xN1LU=
 github.com/qlik-oss/gopherciser v0.6.17 h1:/yWwP4yqCy1xyVgenFSKCQQpmVgNngIZtZk66mjEr8A=
 github.com/qlik-oss/gopherciser v0.6.17/go.mod h1:pTVBxWkOal0s9xMP+rdT8RFoMtFU8U6EZMiLzmvNgbA=
+github.com/qlik-oss/gopherciser v0.6.18 h1:de0ABs3rKGSbA5kSk3uKLz305+jSL+Hi/oDcIbSL+I4=
+github.com/qlik-oss/gopherciser v0.6.18/go.mod h1:HRRqiqTqHYuURP5DJ44D3dlFmLsgNjKA20Qf+y9HXug=
 github.com/rcrowley/go-metrics v0.0.0-20181016184325-3113b8401b8a/go.mod h1:bCqnVzQkZxMG4s8nGwiZ5l3QUCyqpo9Y+/ZMZ9VjZe4=
 github.com/rogpeppe/fastuuid v0.0.0-20150106093220-6724a57986af/go.mod h1:XWv6SoW27p1b0cqNHllgS5HIMJraePCO15w5zCzIWYg=
 github.com/rogpeppe/go-internal v1.3.0/go.mod h1:M8bDsm7K2OlrFYOpmOWEs/qY81heoFRclV5y23lUDJ4=
