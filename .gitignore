@@ -4,7 +4,7 @@
 *.dll
 *.so
 *.dylib
-gophericser-extended-example
+gopherciser-extended-example
 myowngopherciser
 
 # Test binary, built with `go test -c`

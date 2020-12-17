@@ -42,7 +42,7 @@ func (settings SlackNotifySettings) Validate() error {
 func (settings SlackNotifySettings) Execute(sessionState *session.State, actionState *action.State, connection *connection.ConnectionSettings, label string, reset func()) {
 	// setup default rest client if not setup
 	if sessionState.Rest.Client == nil {
-		client, err := session.DefaultClient(connection, sessionState)
+		client, err := session.DefaultClient(connection.Allowuntrusted, sessionState)
 		if err != nil {
 			actionState.AddErrors(errors.WithStack(err))
 			return
@@ -69,7 +69,7 @@ func (settings SlackNotifySettings) Execute(sessionState *session.State, actionS
 
 	options := session.DefaultReqOptions()
 	options.NoVirtualProxy = true // if connection is normally using virtual proxy, disable it for this request
-	sessionState.Rest.PostAsync(settings.WebHook, actionState, sessionState.LogEntry, content, &options)
+	sessionState.Rest.PostAsync(settings.WebHook, actionState, sessionState.LogEntry, content, options)
 
 	sessionState.Wait(actionState) // Await all async requests and reactions, errors will be added to actionState and reported
 }
