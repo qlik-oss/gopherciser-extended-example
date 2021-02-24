@@ -363,6 +363,8 @@ github.com/qlik-oss/gopherciser v0.6.24 h1:iMzVwJpIeN4kDB02xwfivFTYSTcEQR9xSIKZy
 github.com/qlik-oss/gopherciser v0.6.24/go.mod h1:4yV9IGHrp4jpMPRjLW/rQx9LM5DHGtFlGQv3yC8ai2k=
 github.com/qlik-oss/gopherciser v0.6.25 h1:FpCRLa4sB/ZT/fYmvk+bCi5szHXniLDZ7NSbGCWp9no=
 github.com/qlik-oss/gopherciser v0.6.25/go.mod h1:4yV9IGHrp4jpMPRjLW/rQx9LM5DHGtFlGQv3yC8ai2k=
+github.com/qlik-oss/gopherciser v0.6.28 h1:7vkEy8WvuKp1joWxS5JM5swJ8tld1kWmUVrtnIT7H5c=
+github.com/qlik-oss/gopherciser v0.6.28/go.mod h1:69cluoWAiz7xsdrMnEYlUaLH4cW75qqczOHggQgDE2Q=
 github.com/rcrowley/go-metrics v0.0.0-20181016184325-3113b8401b8a/go.mod h1:bCqnVzQkZxMG4s8nGwiZ5l3QUCyqpo9Y+/ZMZ9VjZe4=
 github.com/rogpeppe/fastuuid v0.0.0-20150106093220-6724a57986af/go.mod h1:XWv6SoW27p1b0cqNHllgS5HIMJraePCO15w5zCzIWYg=
 github.com/rogpeppe/go-internal v1.3.0/go.mod h1:M8bDsm7K2OlrFYOpmOWEs/qY81heoFRclV5y23lUDJ4=
@@ -393,6 +395,7 @@ github.com/spf13/cobra v1.1.1 h1:KfztREH0tPxJJ+geloSLaAkaPkr4ki2Er5quFV1TDo4=
 github.com/spf13/cobra v1.1.1/go.mod h1:WnodtKOvamDL/PwE2M4iKs8aMDBZ5Q5klgD3qfVJQMI=
 github.com/spf13/cobra v1.1.2 h1:frHO75w/dH7kEc+e2KYZZKY4+PLrp39OqI77oB8m0KQ=
 github.com/spf13/cobra v1.1.2/go.mod h1:ZjwqWkCg0LnXvLRIfTLdB4Y/MCO3gMHHJ2KFxQZy4xE=
+github.com/spf13/cobra v1.1.3/go.mod h1:pGADOWyqRD/YMrPZigI/zbliZ2wVD/23d+is3pSWzOo=
 github.com/spf13/jwalterweatherman v1.0.0/go.mod h1:cQK4TGJAtQXfYWX+Ddv3mKDzgVb68N+wFjFa4jdeBTo=
 github.com/spf13/pflag v1.0.1/go.mod h1:DYY7MBk1bdzusC3SYhjObp+wFpr4gzcvqqNjLnInEg4=
 github.com/spf13/pflag v1.0.3/go.mod h1:DYY7MBk1bdzusC3SYhjObp+wFpr4gzcvqqNjLnInEg4=
