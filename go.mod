@@ -9,7 +9,7 @@ require (
 	github.com/hashicorp/errwrap v1.1.0 // indirect
 	github.com/json-iterator/go v1.1.10
 	github.com/pkg/errors v0.9.1
-	github.com/qlik-oss/gopherciser v0.8.0
+	github.com/qlik-oss/gopherciser v0.8.1
 	github.com/tus/tusd v1.4.0 // indirect
 	golang.org/x/net v0.0.0-20201216054612-986b41b23924 // indirect
 	golang.org/x/xerrors v0.0.0-20200804184101-5ec99f83aff1 // indirect
