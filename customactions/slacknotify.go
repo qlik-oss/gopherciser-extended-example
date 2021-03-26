@@ -28,14 +28,14 @@ type (
 )
 
 // Validate SlackNotifySettings action (Implements ActionSettings interface)
-func (settings SlackNotifySettings) Validate() error {
+func (settings SlackNotifySettings) Validate() ([]string, error) {
 	if settings.WebHook == "" {
-		return errors.New("no slack webhook defined")
+		return nil, errors.New("no slack webhook defined")
 	}
 	if settings.Msg.String() == "" {
-		return errors.New("no slack message to send defined")
+		return nil, errors.New("no slack message to send defined")
 	}
-	return nil
+	return nil, nil
 }
 
 // Execute SlackNotifySettings action (Implements ActionSettings interface)
