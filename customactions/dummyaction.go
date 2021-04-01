@@ -14,10 +14,10 @@ type (
 )
 
 // Validate DummySettings action (Implements ActionSettings interface)
-func (settings DummySettings) Validate() error {
+func (settings DummySettings) Validate() ([]string, error) {
 	// Add validation checks for the action here, Validate will be run before starting a simulation or
 	// when the script validate command is issued
-	return nil
+	return nil, nil
 }
 
 // Execute DummySettings action (Implements ActionSettings interface)
