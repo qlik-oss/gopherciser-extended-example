@@ -1,0 +1,11 @@
+{
+    "dummy.id": [
+        "Dummy id."
+    ],
+    "slacknotify.msg": [
+        "A message."
+    ],
+    "slacknotify.webhook": [
+        "A webhook url."
+    ]
+}

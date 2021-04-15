@@ -1,0 +1,10 @@
+[
+    {
+        "name": "customActions",
+        "title": "Custom actions (defined in Gopherciser extended example)",
+        "actions": [
+            "dummy",
+            "slacknotify"
+        ]
+    }
+]

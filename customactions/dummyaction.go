@@ -9,7 +9,7 @@ import (
 type (
 	// DummySettings is an empty dummy action to serve as a template
 	DummySettings struct {
-		ID string `json:"id"`
+		ID string `json:"id" doc-key:"dummy.id"`
 	}
 )
 
