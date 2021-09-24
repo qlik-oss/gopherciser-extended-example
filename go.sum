@@ -468,6 +468,8 @@ github.com/qlik-oss/gopherciser v0.13.2 h1:AUJdA/9SVkyDAf2+QHtI8u9EIFqCc4L/4ZI7/
 github.com/qlik-oss/gopherciser v0.13.2/go.mod h1:ry0Adx+prz2oQg6miLsx4HjDUU6z1MSxUTOnA1JZNpg=
 github.com/qlik-oss/gopherciser v0.13.3 h1:aLAOTPgA8rmeedWeqWswUYideF/FLetjXKALQM70Uew=
 github.com/qlik-oss/gopherciser v0.13.3/go.mod h1:/2ArluyE/DUxm1uHEuBuvyTd6J6Uq1LgKtAOJMO0SGk=
+github.com/qlik-oss/gopherciser v0.14.0 h1:lUjQiEb9hssZ/qLH5tSzBhUyMIIsuySAzuWfywYVoO0=
+github.com/qlik-oss/gopherciser v0.14.0/go.mod h1:dsJ3wQNe9g2gh66yKSnYMC2AgvLKjDIM+7e6AwZEAaI=
 github.com/rcrowley/go-metrics v0.0.0-20181016184325-3113b8401b8a/go.mod h1:bCqnVzQkZxMG4s8nGwiZ5l3QUCyqpo9Y+/ZMZ9VjZe4=
 github.com/rogpeppe/fastuuid v0.0.0-20150106093220-6724a57986af/go.mod h1:XWv6SoW27p1b0cqNHllgS5HIMJraePCO15w5zCzIWYg=
 github.com/rogpeppe/fastuuid v1.2.0/go.mod h1:jVj6XXZzXRy/MSR5jhDC/2q6DgLz+nrA6LYCDYWNEvQ=
