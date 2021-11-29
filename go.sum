@@ -448,6 +448,8 @@ github.com/qlik-oss/enigma-go/v2 v2.0.2-0.20210809085858-1b6740bfda45 h1:8VUau4J
 github.com/qlik-oss/enigma-go/v2 v2.0.2-0.20210809085858-1b6740bfda45/go.mod h1:NkptXfqFWjKwUGxZ/x0+/fPkOdfl7ZOOX+5lwtd/Dq4=
 github.com/qlik-oss/enigma-go/v2 v2.1.0 h1:EGy/Jf/VCT1W6sudsoNMfmWhyX6sz8fnp6qWpxaDdNo=
 github.com/qlik-oss/enigma-go/v2 v2.1.0/go.mod h1:fUTHxEd8T9M3P7Ei5Zrrss5fQwmSdSSDqYGSDo0+JiA=
+github.com/qlik-oss/enigma-go/v3 v3.0.1 h1:YhB1ZSJmAXLIb/0+USV5gfzoGsiTso9zoUjjv4dcTfY=
+github.com/qlik-oss/enigma-go/v3 v3.0.1/go.mod h1:LyVhz/Ypo5tAvMolG9w85ndDcCfrBpYAx9mNnENzxc8=
 github.com/qlik-oss/gopherciser v0.10.0 h1:ysF2yWouta2hwdvIS0zOJ+r3bLiINKzEGxuY37144MY=
 github.com/qlik-oss/gopherciser v0.10.0/go.mod h1:eRpwsBvvCjnt+H+H504aFt8TBwBbLibUKjCR1kXPaYs=
 github.com/qlik-oss/gopherciser v0.10.1 h1:FM63ldnVRI07OWnlux723bk4DM/KKjWCXkxxDPu5r5s=
@@ -480,6 +482,8 @@ github.com/qlik-oss/gopherciser v0.14.3 h1:kLwhAelq0HIck1Dz3XylBXwiad0FWn8tcJ2dV
 github.com/qlik-oss/gopherciser v0.14.3/go.mod h1:cW5qtqCQGcJ9qtrCp/ghsXNDbvgTx2spVVJA6U4Iczc=
 github.com/qlik-oss/gopherciser v0.14.4 h1:xlrBVCZ84sq4Qs5mygZb2bCTIOOhJCJTd1yjCyKccyM=
 github.com/qlik-oss/gopherciser v0.14.4/go.mod h1:cW5qtqCQGcJ9qtrCp/ghsXNDbvgTx2spVVJA6U4Iczc=
+github.com/qlik-oss/gopherciser v0.14.5 h1:vbbTyqQhW5U+C/hos78bhGqS2DPaklW+7DnrxGf59YI=
+github.com/qlik-oss/gopherciser v0.14.5/go.mod h1:PJ1DY69pFRqjxWs7LR2v2R05Ig6BWzJmzTC+lT8ON6w=
 github.com/rcrowley/go-metrics v0.0.0-20181016184325-3113b8401b8a/go.mod h1:bCqnVzQkZxMG4s8nGwiZ5l3QUCyqpo9Y+/ZMZ9VjZe4=
 github.com/rogpeppe/fastuuid v0.0.0-20150106093220-6724a57986af/go.mod h1:XWv6SoW27p1b0cqNHllgS5HIMJraePCO15w5zCzIWYg=
 github.com/rogpeppe/fastuuid v1.2.0/go.mod h1:jVj6XXZzXRy/MSR5jhDC/2q6DgLz+nrA6LYCDYWNEvQ=
@@ -681,6 +685,7 @@ golang.org/x/net v0.0.0-20210525063256-abc453219eb5/go.mod h1:9nx3DQGgdP8bBQD5qx
 golang.org/x/net v0.0.0-20210726213435-c6fcb2dbf985/go.mod h1:9nx3DQGgdP8bBQD5qxJ1jj9UTztislL4KSBs9R2vV5Y=
 golang.org/x/net v0.0.0-20210805182204-aaa1db679c0d/go.mod h1:9nx3DQGgdP8bBQD5qxJ1jj9UTztislL4KSBs9R2vV5Y=
 golang.org/x/net v0.0.0-20210825183410-e898025ed96a/go.mod h1:9nx3DQGgdP8bBQD5qxJ1jj9UTztislL4KSBs9R2vV5Y=
+golang.org/x/net v0.0.0-20211008194852-3b03d305991f/go.mod h1:9nx3DQGgdP8bBQD5qxJ1jj9UTztislL4KSBs9R2vV5Y=
 golang.org/x/oauth2 v0.0.0-20180821212333-d2e6202438be/go.mod h1:N/0e6XlmueqKjAGxoOufVs8QHGRruUQn6yWY3a++T0U=
 golang.org/x/oauth2 v0.0.0-20190226205417-e64efc72b421/go.mod h1:gOpvHmFTYa4IltrdGE7lF6nIHvwfUNPOp7c8zoXwtLw=
 golang.org/x/oauth2 v0.0.0-20190604053449-0f29369cfe45/go.mod h1:gOpvHmFTYa4IltrdGE7lF6nIHvwfUNPOp7c8zoXwtLw=
