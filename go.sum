@@ -192,6 +192,8 @@ github.com/goccy/go-json v0.8.1 h1:4/Wjm0JIJaTDm8K1KcGrLHJoa8EsJ13YWeX+6Kfq6uI=
 github.com/goccy/go-json v0.8.1/go.mod h1:6MelG93GURQebXPDq3khkgXZkazVtN9CRI+MGFi0w8I=
 github.com/goccy/go-json v0.9.1 h1:xurvfvj3gq6SWUkkZ0opoUDTms7jif41uZ9z9s+hVlY=
 github.com/goccy/go-json v0.9.1/go.mod h1:6MelG93GURQebXPDq3khkgXZkazVtN9CRI+MGFi0w8I=
+github.com/goccy/go-json v0.9.3 h1:VYKeLtdIQXWaeTZy5JNGZbVui5ck7Vf5MlWEcflqz0s=
+github.com/goccy/go-json v0.9.3/go.mod h1:6MelG93GURQebXPDq3khkgXZkazVtN9CRI+MGFi0w8I=
 github.com/godbus/dbus/v5 v5.0.4/go.mod h1:xhWf0FNVPg57R7Z0UbKHbJfkEywrmjJnf7w5xrFpKfA=
 github.com/gogo/googleapis v1.1.0/go.mod h1:gf4bu3Q80BeJ6H1S1vYPm8/ELATdvryBaNFGgqEef3s=
 github.com/gogo/protobuf v1.1.1/go.mod h1:r8qH/GZQm5c6nD/R0oafs1akxWv10x8SbQlK7atdtwQ=
@@ -585,6 +587,8 @@ github.com/qlik-oss/gopherciser v0.14.8 h1:BG8cCA/9z7QWkZTiEBvYrP8zuru07w7WsTeIs
 github.com/qlik-oss/gopherciser v0.14.8/go.mod h1:q4vY2ikL3M0qtyW0XkBtM5u/ZskKw83bBRRB+qT90oo=
 github.com/qlik-oss/gopherciser v0.14.9 h1:e40WhuLegp0+V8I5AnHBMl1Q7oZcx8AhOQ7tDj6iIaE=
 github.com/qlik-oss/gopherciser v0.14.9/go.mod h1:H3zS1K1kII0xVsAl1TpNqJ+8iSCAIEgHizQUopnrg7k=
+github.com/qlik-oss/gopherciser v0.14.10 h1:4GSuH3Rz+lauxjkZgoxB+TEoLRu0d4aKW7wZNyBN8FE=
+github.com/qlik-oss/gopherciser v0.14.10/go.mod h1:WyLzHS1uLSAanuMW+4n1F1Z9TS0CDM4AIvkkxAhDfxU=
 github.com/rcrowley/go-metrics v0.0.0-20181016184325-3113b8401b8a/go.mod h1:bCqnVzQkZxMG4s8nGwiZ5l3QUCyqpo9Y+/ZMZ9VjZe4=
 github.com/rogpeppe/fastuuid v0.0.0-20150106093220-6724a57986af/go.mod h1:XWv6SoW27p1b0cqNHllgS5HIMJraePCO15w5zCzIWYg=
 github.com/rogpeppe/fastuuid v1.2.0/go.mod h1:jVj6XXZzXRy/MSR5jhDC/2q6DgLz+nrA6LYCDYWNEvQ=
