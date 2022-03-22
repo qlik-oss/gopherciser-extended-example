@@ -64,7 +64,7 @@ func (sched MyScheduler) Execute(
 	}
 	sched.Scheduler.ConnectionSettings = connectionSettings
 
-	// Create a seeded randomizer for reproducbile results
+	// Create a seeded randomizer for reproducible results
 	seededRandomizer := randomizer.NewSeededRandomizer(12345)
 
 	var mErr *multierror.Error
