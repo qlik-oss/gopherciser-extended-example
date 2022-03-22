@@ -2,7 +2,7 @@
 
 ## IScheduler interface
 
-The first thin a custom scheduler needs to implement is the `IScheduler`interface
+The first thing a custom scheduler needs to implement is the `IScheduler`interface
 
 ```golang
 	// IScheduler interface of scheduler
