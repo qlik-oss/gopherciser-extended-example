@@ -38,7 +38,7 @@ func init() {
 }
 ```
 
-Overriden an existing scheduler with the same name can be done with the `RegisterSchedulerOverride` method.
+Overriding an existing scheduler with the same name can be done with the `RegisterSchedulerOverride` method.
 
 ```golang
 func init() {
