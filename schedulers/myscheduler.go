@@ -90,7 +90,7 @@ func (sched MyScheduler) Execute(
 	return errors.WithStack(helpers.FlattenMultiError(mErr))
 }
 
-// RequireScenario reports if the scheduler requires a scenarion or not for scheduler validation.
+// RequireScenario reports if the scheduler requires a scenario or not for scheduler validation.
 func (sched MyScheduler) RequireScenario() bool {
 	return true
 }
