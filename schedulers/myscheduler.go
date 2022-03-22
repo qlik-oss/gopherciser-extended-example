@@ -62,6 +62,7 @@ func (sched MyScheduler) Execute(
 	if counters == nil {
 		return errors.New("execution counters are nil")
 	}
+	sched.Scheduler.ConnectionSettings = connectionSettings
 
 	// Create a seeded randomizer for reproducbile results
 	seededRandomizer := randomizer.NewSeededRandomizer(12345)
