@@ -3,8 +3,11 @@ package main
 import (
 	"github.com/qlik-oss/gopherciser/cmd"
 
-	// make sure to register custom actions
+	// Register custom actions
 	_ "github.com/qlik-oss/gopherciser-extended-example/customactions"
+
+	// Register custom schedulers
+	_ "github.com/qlik-oss/gopherciser-extended-example/schedulers"
 )
 
 //go:generate go run ./generatedocs/cmd/compiledocs
