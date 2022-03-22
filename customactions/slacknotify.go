@@ -7,13 +7,14 @@ import (
 	"github.com/qlik-oss/gopherciser/action"
 	"github.com/qlik-oss/gopherciser/connection"
 	"github.com/qlik-oss/gopherciser/session"
+	"github.com/qlik-oss/gopherciser/synced"
 )
 
 type (
 	// SlackNotifySettings is an empty dummy action to serve as a template
 	SlackNotifySettings struct {
-		WebHook string                 `json:"webhook" doc-key:"slacknotify.webhook"`
-		Msg     session.SyncedTemplate `json:"msg" doc-key:"slacknotify.msg"`
+		WebHook string          `json:"webhook" doc-key:"slacknotify.webhook"`
+		Msg     synced.Template `json:"msg" doc-key:"slacknotify.msg"`
 	}
 
 	// Message slack message structure
