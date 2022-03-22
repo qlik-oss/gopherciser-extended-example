@@ -111,8 +111,147 @@ connectionSettings": {
 }
 ```
 
----
-</details>
+<hr></details>
+
+<details>
+<summary>hooks</summary>
+
+## Hooks section
+
+This section contains the possibility to define hooks, which will send requests to a defined endpoint before and after a test execution.
+
+* `preexecute`: Pre execution hook. Can be used to send a request to an endpoint before a test starts.
+  * `url`: Url to send a request towards.
+  * `method`: Method of request, defaults to none.
+  * `payload`: (optional) Content of request.
+  * `respcodes`: Accepted response codes, defaults to 200.
+  * `contenttype`: Request content-type header. Defaults to application/json.
+  * `extractors`: Extractors, can be used to extract a value from the response to be used on subsequent hook, or to validate that a that part of a response has a specific value.
+    * `Name`: Name of extractor, this name is what is later used to when accessing the extracted data in a template such as {{ .Vars.MyExtractorName }}.
+    * `path`: Path to data to extract, e.g. /id to extract the data my-id from from a parameter *id* in JSON root.
+    * `faillevel`: Defines how to report data extraction or validation failure.
+        * `none`: Do nothing.
+        * `info`: Log an info log row.
+        * `warning`: Log a warning log row.
+        * `error`: Log a error row and abort script.
+    * `validator`: Validate that part of the response has a specific value
+      * `type`: Value should be of this type.
+          * `none`: Default type, no validation of value will be done.
+          * `bool`: Value should be a boolean.
+          * `number`: Value should be a number.
+          * `string`: Value should be a string.
+      * `value`: Validate the value is exactly equal to this.
+  * `headers`: Custom headers to add to the request.
+    * `name`: Name of header.
+    * `value`: Value of header.
+* `postexecute`: Post execution hook. Can be used to send a request to an endpoint after a test is done.
+  * `url`: Url to send a request towards.
+  * `method`: Method of request, defaults to none.
+  * `payload`: (optional) Content of request.
+  * `respcodes`: Accepted response codes, defaults to 200.
+  * `contenttype`: Request content-type header. Defaults to application/json.
+  * `extractors`: Extractors, can be used to extract a value from the response to be used on subsequent hook, or to validate that a that part of a response has a specific value.
+    * `Name`: Name of extractor, this name is what is later used to when accessing the extracted data in a template such as {{ .Vars.MyExtractorName }}.
+    * `path`: Path to data to extract, e.g. /id to extract the data my-id from from a parameter *id* in JSON root.
+    * `faillevel`: Defines how to report data extraction or validation failure.
+        * `none`: Do nothing.
+        * `info`: Log an info log row.
+        * `warning`: Log a warning log row.
+        * `error`: Log a error row and abort script.
+    * `validator`: Validate that part of the response has a specific value
+      * `type`: Value should be of this type.
+          * `none`: Default type, no validation of value will be done.
+          * `bool`: Value should be a boolean.
+          * `number`: Value should be a number.
+          * `string`: Value should be a string.
+      * `value`: Validate the value is exactly equal to this.
+  * `headers`: Custom headers to add to the request.
+    * `name`: Name of header.
+    * `value`: Value of header.
+
+### Example
+
+#### Send a request to slack that a test is starting.
+
+```json
+"hooks": {
+    "preexecute": {
+        "url": "https://hooks.slack.com/services/XXXXXXXXX/YYYYYYYYYYY/ZZZZZZZZZZZZZZZZZZZZZZZZ",
+        "method": "POST",
+        "payload": "{ \"text\": \"Running test with {{ .Scheduler.ConcurrentUsers }} concurrent users and {{ .Scheduler.Iterations }} iterations towards {{ .ConnectionSettings.Server }}.\"}",
+        "contenttype": "application/json"
+    },
+    "postexecute": {
+        "url": "https://hooks.slack.com/services/XXXXXXXXX/YYYYYYYYYYY/ZZZZZZZZZZZZZZZZZZZZZZZZ",
+        "method": "POST",
+        "payload": "{ \"text\": \"Test finished with {{ .Counters.Errors }} errors and {{ .Counters.Warnings }} warnings. Total Sessions: {{ .Counters.Sessions }}\"}"
+    }
+}
+```
+
+This will send a message on test startup such as:
+
+```text
+Running test with 10 concurrent users and 2 iterations towards MyServer.com.
+```
+
+And a message on test finished such as:
+
+```text
+Test finished with 4 errors and 12 warnings. Total Sessions: 20.
+```
+
+#### Ask an endpoint before execution if test is ok to run
+
+```json
+"hooks": {
+    "preexecute": {
+        "url": "http://myserver:8080/oktoexecute",
+        "method": "POST",
+        "headers": [
+            {
+                "name" : "someheader",
+                "value": "headervalue"
+            }
+        ],
+        "payload": "{\"testID\": \"12345\",\"startAt\": \"{{now.Format \"2006-01-02T15:04:05Z07:00\"}}\"}",
+        "extractors": [
+            {
+                "name": "oktorun",
+                "path" : "/oktorun",
+                "faillevel": "error",
+                "validator" : {
+                    "type": "bool",
+                    "value": "true"
+                }
+            }
+        ]
+    }
+}
+```
+
+This will POST a request to `http://myserver:8080/oktoexecute` with the body:
+
+```json
+{
+    "testID": "12345",
+    "startAt": "2021-05-06T08:00:00Z01:00"
+}
+```
+
+For a test started at `2021-05-06T08:00:00` in timezone UTC+1.
+
+Let's assume the response from this endpoint is:
+
+```json
+{
+    "oktorun": false
+}
+```
+
+The validator with path `/oktorun` will extract the value `false` and compare to the value defined in the validator, in this case `true`. Since the they are not equal the test will stop with error before starting exection.
+
+<hr></details>
 
 <details>
 <summary>loginSettings</summary>
@@ -124,9 +263,11 @@ This section of the JSON file contains information on the login settings.
 * `type`: Type of login request
     * `prefix`: Add a prefix (specified by the `prefix` setting below) to the username, so that it will be `prefix_{session}`.
     * `userlist`: List of users as specified by the `userList` setting below.
+    * `fromfile`: List of users from a file with 1 user per row and the format `username;directory;password`
     * `none`: Do not add a prefix to the username, so that it will be `{session}`.
 * `settings`: 
     * `userList`: List of users for the `userlist` login request type. Directory and password can be specified per user or outside the list of usernames, which means that they are inherited by all users.
+    * `filename`: Path to file with users.
   * `prefix`: Prefix to add to the username, so that it will be `prefix_{session}`.
   * `directory`: Directory to set for the users.
 
@@ -147,27 +288,66 @@ This section of the JSON file contains information on the login settings.
 #### Userlist login request type
 
 ```json
-  "loginSettings": {
-    "type": "userlist",
-    "settings": {
-      "userList": [
-        {
-          "username": "sim1@myhost.example",
-          "directory": "anydir1",
-          "password": "MyPassword1"
-        },
-        {
-          "username": "sim2@myhost.example"
-        }
-      ],
-      "directory": "anydir2",
-      "password": "MyPassword2"
-    }
+"loginSettings": {
+  "type": "userlist",
+  "settings": {
+    "userList": [
+      {
+        "username": "sim1@myhost.example",
+        "directory": "anydir1",
+        "password": "MyPassword1"
+      },
+      {
+        "username": "sim2@myhost.example"
+      }
+    ],
+    "directory": "anydir2",
+    "password": "MyPassword2"
   }
+}
 ```
 
----
-</details>
+#### Fromfile login request type
+
+Reads a user list from file. 1 User per row of the and with the format `username;directory;password`. `directory` and `password` are optional, if none are defined for a user it will use the default values on settings (i.e. `defaultdir` and `defaultpassword`). If the used authentication type doesn't use `directory` or `password` these can be omitted.
+
+Definition with default values:
+
+```json
+"loginSettings": {
+  "type": "fromfile",
+  "settings": {
+    "filename": "./myusers.txt",
+    "directory": "defaultdir",
+    "password": "defaultpassword"
+  }
+}
+```
+
+Definition without default values:
+
+```json
+"loginSettings": {
+  "type": "fromfile",
+  "settings": {
+    "filename": "./myusers.txt"
+  }
+}
+```
+
+This is a valid format of a file.
+
+```text
+testuser1
+testuser2;myspecialdirectory
+testuser3;;somepassword
+testuser4;specialdir;anotherpassword
+testuser5;;A;d;v;a;n;c;e;d;;P;a;s;s;w;o;r;d;
+```
+
+*testuser1* will get default `directory` and `password`, *testuser3* and *testuser5* will get default `directory`.
+
+<hr></details>
 
 <details>
 <summary>scenario</summary>
@@ -232,8 +412,7 @@ Apply a bookmark in the current app.
 }
 ```
 
----
-</details>
+<hr></details>
 
 <details>
 <summary>askhubadvisor</summary>
@@ -253,13 +432,19 @@ Perform a query in the Qlik Sense hub insight advisor.
 * `app`: Optional name of app to pick in followup queries. If not set, a random app is picked.
 * `saveimages`: Save images of charts to file.
 * `saveimagefile`: File name of saved images. Defaults to server side file name. Supports [Session Variables](https://github.com/qlik-trial/gopherciser-oss/blob/master/docs/settingup.md#session-variables).
-* `thinktime`: Settings for the `thinktime` action, which is automatically inserted before each followup.
+* `thinktime`: Settings for the `thinktime` action, which is automatically inserted before each followup. Defaults to a uniform distribution with mean=8 and deviation=4.
   * `type`: Type of think time
       * `static`: Static think time, defined by `delay`.
       * `uniform`: Random think time with uniform distribution, defined by `mean` and `dev`.
   * `delay`: Delay (seconds), used with type `static`.
   * `mean`: Mean (seconds), used with type `uniform`.
   * `dev`: Deviation (seconds) from `mean` value, used with type `uniform`.
+* `followuptypes`: A list of followup types enabled for followup queries. If omitted, all types are enabled.
+    * `app`: Enable followup queries which change app.
+    * `measure`: Enable followups based on measures.
+    * `dimension`: Enable followups based on dimensions.
+    * `recommendation`: Enable followups based on recommendations.
+    * `sentence`: Enable followup queries based on bare sentences.
 
 ### Examples
 
@@ -358,6 +543,23 @@ See detailed examples of settings in the documentation for thinktime action.
 }
 ```
 
+#### Ask followups only based on app selection
+
+
+```json
+{
+    "action": "AskHubAdvisor",
+    "settings": {
+        "querysource": "querylist",
+        "querylist": [
+            "what is the lowest price of shoes"
+        ],
+        "maxfollowup": 5,
+        "followuptypes": ["app"]
+    }
+}
+```
+
 #### Save chart images to file
 
 ```json
@@ -400,8 +602,7 @@ You can apart from session variables include the following action local variable
 }
 ```
 
----
-</details>
+<hr></details>
 
 <details>
 <summary>changesheet</summary>
@@ -446,8 +647,7 @@ The action supports getting data from the following objects:
 }
 ```
 
----
-</details>
+<hr></details>
 
 <details>
 <summary>clearall</summary>
@@ -466,8 +666,7 @@ Clear all selections in an app.
 }
 ```
 
----
-</details>
+<hr></details>
 
 <details>
 <summary>clearfield</summary>
@@ -490,8 +689,7 @@ Clear selections in a field.
 }
 ```
 
----
-</details>
+<hr></details>
 
 <details>
 <summary>clickactionbutton</summary>
@@ -538,8 +736,7 @@ A `ClickActionButton`-action simulates clicking an _action-button_. An _action-b
 }
 ```
 
----
-</details>
+<hr></details>
 
 <details>
 <summary>containertab</summary>
@@ -593,8 +790,7 @@ A `Containertab` action simulates switching the active object in a `container` o
 }
 ```
 
----
-</details>
+<hr></details>
 
 <details>
 <summary>createbookmark</summary>
@@ -623,8 +819,7 @@ Create a bookmark from the current selection and selected sheet.
 }
 ```
 
----
-</details>
+<hr></details>
 
 <details>
 <summary>createsheet</summary>
@@ -648,8 +843,7 @@ Create a new sheet in the current app.
 }
 ```
 
----
-</details>
+<hr></details>
 
 <details>
 <summary>deletebookmark</summary>
@@ -679,8 +873,7 @@ Delete one or more bookmarks in the current app.
 }
 ```
 
----
-</details>
+<hr></details>
 
 <details>
 <summary>deletesheet</summary>
@@ -710,8 +903,7 @@ Delete one or more sheets in the current app.
 }
 ```
 
----
-</details>
+<hr></details>
 
 <details>
 <summary>disconnectapp</summary>
@@ -730,8 +922,7 @@ Disconnect from an already connected app.
 }
 ```
 
----
-</details>
+<hr></details>
 
 <details>
 <summary>disconnectenvironment</summary>
@@ -752,8 +943,7 @@ Since the action also disconnects any open websocket to Sense apps, it does not 
 }
 ```
 
----
-</details>
+<hr></details>
 
 <details>
 <summary>dosave</summary>
@@ -771,8 +961,7 @@ Since the action also disconnects any open websocket to Sense apps, it does not 
 }
 ```
 
----
-</details>
+<hr></details>
 
 <details>
 <summary>duplicatesheet</summary>
@@ -800,8 +989,7 @@ Duplicate a sheet, including all objects.
 }
 ```
 
----
-</details>
+<hr></details>
 
 <details>
 <summary>iterated</summary>
@@ -844,8 +1032,7 @@ Loop one or more actions.
 }
 ```
 
----
-</details>
+<hr></details>
 
 <details>
 <summary>listboxselect</summary>
@@ -879,8 +1066,7 @@ Perform list object specific selectiontypes in listbox.
 }
 ```
 
----
-</details>
+<hr></details>
 
 <details>
 <summary>openapp</summary>
@@ -908,6 +1094,7 @@ Open an app.
 * `app`: App name or app GUID (supports the use of [session variables](#session_variables)). Used with `appmode` set to `guid` or `name`.
 * `list`: List of apps. Used with `appmode` set to `randomnamefromlist`, `randomguidfromlist`, `roundnamefromlist` or `roundguidfromlist`.
 * `filename`: Path to a file in which each line represents an app. Used with `appmode` set to `randomnamefromfile`, `randomguidfromfile`, `roundnamefromfile` or `roundguidfromfile`.
+* `externalhost`: (optional) Sets an external host to be used instead of `server` configured in connection settings.
 * `unique`: Create unqiue engine session not re-using session from previous connection with same user. Defaults to false.
 
 ### Examples
@@ -933,8 +1120,7 @@ Open an app.
 }
 ```
 
----
-</details>
+<hr></details>
 
 <details>
 <summary>productversion</summary>
@@ -969,8 +1155,7 @@ Request the product version from the server and, optionally, save it to the log.
 }
 ```
 
----
-</details>
+<hr></details>
 
 <details>
 <summary>publishbookmark</summary>
@@ -1012,8 +1197,7 @@ Publish the bookmark with the `title` "bookmark of testuser", where "testuser" i
 }
 ```
 
----
-</details>
+<hr></details>
 
 <details>
 <summary>publishsheet</summary>
@@ -1039,8 +1223,7 @@ Publish sheets in the current app.
 }
 ```
 
----
-</details>
+<hr></details>
 
 <details>
 <summary>randomaction</summary>
@@ -1175,8 +1358,7 @@ The following default values are used for the different actions:
 }
 ```
 
----
-</details>
+<hr></details>
 
 <details>
 <summary>reload</summary>
@@ -1204,8 +1386,7 @@ Reload the current app by simulating selecting **Load data** in the Data load ed
 }
 ```
 
----
-</details>
+<hr></details>
 
 <details>
 <summary>select</summary>
@@ -1305,8 +1486,7 @@ To statically select "Gamma" in this case:
 }
 ```
 
----
-</details>
+<hr></details>
 
 <details>
 <summary>setscript</summary>
@@ -1328,8 +1508,264 @@ Set the load script for the current app. To load the data from the script, use t
 }
 ```
 
----
-</details>
+<hr></details>
+
+<details>
+<summary>setscriptvar</summary>
+
+## SetScriptVar action
+
+Sets a variable which can be used within the same session. Cannot be accessed across different simulated users.
+
+* `name`: Name of variable to set. Will overwrite any existing variable with same name.
+* `type`: Type of the variable.
+    * `string`: Variable of type string e.g. `my var value`.
+    * `int`: Variable of type integer e.g. `6`.
+    * `array`: Variable of type array e.g. `1,2,3`.
+* `value`: Value to set to variable (supports the use of [session variables](#session_variables)).
+* `sep`: Separator to use when separating string into array. Defaults to `,`.
+
+### Example
+
+Create a variable containing a string and use it in openapp.
+
+```json
+{
+    "action": "setscriptvar",
+    "settings": {
+        "name": "mylocalvar",
+        "type": "string",
+        "value": "My app Name with number for session {{ .Session }}"
+    }
+},
+{
+    "action": "openapp",
+    "settings": {
+        "appmode": "name",
+        "app": "{{ .ScriptVars.mylocalvar }}"
+    }
+}
+```
+
+Create a variable containing an integer and use it in a loop creating bookmarks numbered 1 to 5. Then in a different loop reset variable and delete the bookmarks.
+
+```json
+{
+    "action": "setscriptvar",
+    "settings": {
+        "name": "BookmarkCounter",
+        "type": "int",
+        "value": "0"
+    }
+},
+{
+    "action": "iterated",
+    "settings": {
+        "iterations": 5,
+        "actions": [
+            {
+                "action": "setscriptvar",
+                "settings": {
+                    "name": "BookmarkCounter",
+                    "type": "int",
+                    "value": "{{ add .ScriptVars.BookmarkCounter 1 }}"
+                }
+            },
+            {
+                "action": "createbookmark",
+                "settings": {
+                    "title": "Bookmark {{ .ScriptVars.BookmarkCounter }}",
+                    "description": "This bookmark contains some interesting selections"
+                }
+            }
+            
+        ]
+    }
+},
+{
+    "action": "setscriptvar",
+    "settings": {
+        "name": "BookmarkCounter",
+        "type": "int",
+        "value": "0"
+    }
+},
+{
+    "action": "iterated",
+    "disabled": false,
+    "settings": {
+        "iterations": 3,
+        "actions": [
+            {
+                "action": "setscriptvar",
+                "settings": {
+                    "name": "BookmarkCounter",
+                    "type": "int",
+                    "value": "{{ .ScriptVars.BookmarkCounter | add 1}}"
+                }
+            },
+            {
+                "action": "deletebookmark",
+                "settings": {
+                    "mode": "single",
+                    "title": "Bookmark {{ $element:=range.ScriptVars.BookmarkCounter }} {{ $element }}{{ end }}"
+                }
+            }
+        ]
+    }
+}
+```
+
+Combine two variables `MyArrayVar` and `BookmarkCounter` to create 3 bookmarks with the names `Bookmark one`, `Bookmark two` and `Bookmark three`.
+
+```json
+{
+    "action": "setscriptvar",
+    "settings": {
+        "name": "MyArrayVar",
+        "type": "array",
+        "value": "one,two,three,four,five",
+        "sep": ","
+    }           
+},
+{
+    "action": "setscriptvar",
+    "settings": {
+        "name": "BookmarkCounter",
+        "type": "int",
+        "value": "0"
+    }
+},
+{
+    "action": "iterated",
+    "disabled": false,
+    "settings": {
+        "iterations": 3,
+        "actions": [
+            {
+                "action": "createbookmark",
+                "settings": {
+                    "title": "Bookmark {{ index .ScriptVars.MyArrayVar .ScriptVars.BookmarkCounter }}",
+                    "description": "This bookmark contains some interesting selections"
+                }
+            },
+            {
+                "action": "setscriptvar",
+                "settings": {
+                    "name": "BookmarkCounter",
+                    "type": "int",
+                    "value": "{{ .ScriptVars.BookmarkCounter | add 1}}"
+                }
+            }
+        ]
+    }
+}
+ ```
+
+A more advanced example.
+
+Create a bookmark "BookmarkX" for each iteration in a loop, and add this to an array "MyArrayVar". After the first `iterated` action this will look like "Bookmark1,Bookmark2,Bookmark3". The second `iterated` action then deletes these bookmarks using the created array.
+
+Dissecting the first array construction action. The `join` command takes the elements `.ScriptVars.MyArrayVar` and joins them together into a string separated by the separtor `,`. So with an array of [ elem1 elem2 ] this becomes a string as `elem1,elem2`. The `if` statement checks if the value of `.ScriptVars.BookmarkCounter` is 0, if it is 0 (i.e. the first iteration) it sets the string to `Bookmark1`. If it is not 0, it executes the join command on .ScriptVars.MyArrayVar, on iteration 3, the result of this would be `Bookmark1,Bookmark2` then it appends the fixed string `,Bookmark`, so far the string is `Bookmark1,Bookmark2,Bookmark`. Lastly it takes the value of `.ScriptVars.BookmarkCounter`, which is now 2, and adds 1 too it and appends, making the entire string `Bookmark1,Bookmark2,Bookmark3`.
+
+ ```json
+{
+    "action": "setscriptvar",
+    "settings": {
+        "name": "BookmarkCounter",
+        "type": "int",
+        "value": "0"
+    }
+},
+{
+    "action": "iterated",
+    "disabled": false,
+    "settings": {
+        "iterations": 3,
+        "actions": [
+            {
+                "action": "setscriptvar",
+                "settings": {
+                    "name": "MyArrayVar",
+                    "type": "array",
+                    "value": "{{ if eq 0 .ScriptVars.BookmarkCounter }}Bookmark1{{ else }}{{ join .ScriptVars.MyArrayVar \",\" }},Bookmark{{ .ScriptVars.BookmarkCounter | add 1 }}{{ end }}",
+                    "sep": ","
+                }
+            },
+            {
+                "action": "createbookmark",
+                "settings": {
+                    "title": "{{ index .ScriptVars.MyArrayVar .ScriptVars.BookmarkCounter }}",
+                    "description": "This bookmark contains some interesting selections"
+                }
+            },
+            {
+                "action": "setscriptvar",
+                "settings": {
+                    "name": "BookmarkCounter",
+                    "type": "int",
+                    "value": "{{ .ScriptVars.BookmarkCounter | add 1}}"
+                }
+            }
+        ]
+    }
+},
+{
+    "action": "setscriptvar",
+    "settings": {
+        "name": "BookmarkCounter",
+        "type": "int",
+        "value": "0"
+    }
+},
+{
+    "action": "iterated",
+    "disabled": false,
+    "settings": {
+        "iterations": 3,
+        "actions": [
+            {
+                "action": "deletebookmark",
+                "settings": {
+                    "mode": "single",
+                    "title": "{{ index .ScriptVars.MyArrayVar .ScriptVars.BookmarkCounter }}"
+                }
+            },
+            {
+                "action": "setscriptvar",
+                "settings": {
+                    "name": "BookmarkCounter",
+                    "type": "int",
+                    "value": "{{ .ScriptVars.BookmarkCounter | add 1}}"
+                }
+            }
+        ]
+    }
+}
+ ```
+<hr></details>
+
+<details>
+<summary>setsensevariable</summary>
+
+## SetSenseVariable action
+
+Sets a Qlik Sense variable on a sheet in the open app.
+
+* `name`: Name of the Qlik Sense variable to set.
+* `value`: Value to set the Qlik Sense variable to. (supports the use of [session variables](#session_variables))
+
+### Example
+
+Set a variable to 2000
+
+```json
+{
+     "name": "vSampling",
+     "value": "2000"
+}
+```
+<hr></details>
 
 <details>
 <summary>sheetchanger</summary>
@@ -1352,8 +1788,166 @@ Create and execute a `changesheet` action for each sheet in an app. This can be 
 }
 ```
 
----
-</details>
+<hr></details>
+
+<details>
+<summary>smartsearch</summary>
+
+## SmartSearch action
+
+Perform a Smart Search in Sense app to find suggested selections.
+
+* `searchtextsource`: Source for list of strings used for searching.
+    * `searchtextlist` (default)
+    * `searchtextfile`
+* `searchtextlist`: List of of strings used for searching.
+* `searchtextfile`: File path to file with one search string per line.
+* `pastesearchtext`: 
+    * `true`: Simulate pasting search text.
+    * `false`: Simulate typing at normal speed (default).
+* `makeselection`: Select a random search result.
+    * `true`
+    * `false`
+* `selectionthinktime`: Think time before selection if `makeselection` is `true`, defaults to a 1 second delay.
+  * `type`: Type of think time
+      * `static`: Static think time, defined by `delay`.
+      * `uniform`: Random think time with uniform distribution, defined by `mean` and `dev`.
+  * `delay`: Delay (seconds), used with type `static`.
+  * `mean`: Mean (seconds), used with type `uniform`.
+  * `dev`: Deviation (seconds) from `mean` value, used with type `uniform`.
+
+
+### Examples
+
+#### Search with one search term
+```json
+{
+    "action": "smartsearch",
+    "label": "one term search",
+    "settings": {
+        "searchtextlist": [
+            "term1"
+        ]
+    }
+}
+```
+
+#### Search with two search terms
+```json
+{
+    "action": "smartsearch",
+    "label": "two term search",
+    "settings": {
+        "searchtextlist": [
+            "term1 term2"
+        ]
+    }
+}
+```
+
+#### Search with random selection of search text from list
+```json
+{
+    "action": "smartsearch",
+    "settings": {
+        "searchtextlist": [
+            "text1",
+            "text2",
+            "text3"
+        ]
+    }
+}
+```
+
+#### Search with random selection of search text from file
+```json
+{
+    "action": "smartsearch",
+    "settings": {
+        "searchtextsource": "searchtextfile",
+        "searchtextfile": "data/searchtexts.txt"
+    }
+}
+```
+##### `data/searchtexts.txt`
+```
+search text
+"quoted search text"
+another search text
+```
+
+#### Simulate pasting search text
+
+The default behavior is to simulate typing at normal speed.
+```json
+{
+    "action": "smartsearch",
+    "settings": {
+        "pastesearchtext": true,
+        "searchtextlist": [
+            "text1"
+        ]
+    }
+}
+```
+
+#### Make a random selection from search results
+```json
+{
+    "action": "smartsearch",
+    "settings": {
+        "searchtextlist": [
+            "term1"
+        ],
+        "makeselection": true,
+        "selectionthinktime": {
+            "type": "static",
+            "delay": 2
+        }
+    }
+}
+```
+
+#### Search with one search term including spaces
+```json
+{
+    "action": "smartsearch",
+    "settings": {
+        "searchtextlist": [
+            "\"word1 word2\""
+        ]
+    }
+}
+```
+
+#### Search with two search terms, one of them including spaces
+```json
+{
+    "action": "smartsearch",
+    "label": "two term search, one including spaces",
+    "settings": {
+        "searchtextlist": [
+            "\"word1 word2\" term2"
+        ]
+    }
+}
+```
+
+#### Search with one search term including double quote
+```json
+{
+    "action": "smartsearch",
+    "label": "one term search including spaces",
+    "settings": {
+        "searchtext":
+        "searchtextlist": [
+            "\\\"hello"
+        ]
+    }
+}
+```
+
+<hr></details>
 
 <details>
 <summary>subscribeobjects</summary>
@@ -1394,8 +1988,7 @@ Subscribe to an additional single object (or a list of objects) in the currently
     }
 }
 ```
----
-</details>
+<hr></details>
 
 <details>
 <summary>thinktime</summary>
@@ -1446,8 +2039,7 @@ This simulates a think time of 5 seconds.
 }
 ```
 
----
-</details>
+<hr></details>
 
 <details>
 <summary>unpublishbookmark</summary>
@@ -1489,8 +2081,7 @@ Unpublish the bookmark with the `title` "bookmark of testuser", where "testuser"
 }
 ```
 
----
-</details>
+<hr></details>
 
 <details>
 <summary>unpublishsheet</summary>
@@ -1515,8 +2106,7 @@ Unpublish sheets in the current app.
 }
 ```
 
----
-</details>
+<hr></details>
 
 <details>
 <summary>unsubscribeobjects</summary>
@@ -1555,11 +2145,9 @@ Unsubscribe from all currently subscribed objects.
     }
 }
 ```
----
-</details>
+<hr></details>
 
----
-</details>
+<hr></details>
 
 <details>
 <summary>Custom actions (defined in Gopherciser extended example)</summary>
@@ -1585,8 +2173,7 @@ Notify in slack.
      }
 }
 ```
----
-</details>
+<hr></details>
 
 <details>
 <summary>slacknotify</summary>
@@ -1609,11 +2196,9 @@ Notify in slack.
      }
 }
 ```
----
-</details>
+<hr></details>
 
----
-</details>
+<hr></details>
 
 <details>
 <summary>Qlik Sense Enterprise on Windows (QSEoW) actions</summary>
@@ -1643,8 +2228,7 @@ Delete all user-generated on-demand apps for the current user and the specified 
 }
 ```
 
----
-</details>
+<hr></details>
 
 <details>
 <summary>generateodag</summary>
@@ -1666,8 +2250,7 @@ Generate an on-demand app from an existing On-Demand App Generation (ODAG) link.
 }
 ```
 
----
-</details>
+<hr></details>
 
 <details>
 <summary>openhub</summary>
@@ -1686,11 +2269,9 @@ Open the hub in a QSEoW environment.
 }
 ```
 
----
-</details>
+<hr></details>
 
----
-</details>
+<hr></details>
 
 
 ## Session variables
@@ -1707,6 +2288,7 @@ The following session variables are supported in actions:
 * `UserName`: The simulated username. This is not the same as the authenticated user, but rather how the username was defined by [Login settings](#login_settings).  
 * `Session`: The enumeration of the currently simulated session.
 * `Thread`: The enumeration of the currently simulated "thread" or "concurrent user".
+* `ScriptVars`: A map containing script variables added by the action `setscriptvar`.
 
 The following variable is supported in the filename of the log file:
 
@@ -1719,6 +2301,8 @@ The following functions are supported:
 * `timestamp`: Timestamp in `yyyyMMddhhmmss` format.
 * `uuid`: Generate an uuid.
 * `env`: Retrieve a specific environment variable. Takes one argument - the name of the environment variable to expand.
+* `add`: Adds two integer values together and outputs the sum. E.g. `{{ add 1 2 }}`.
+* `join`: Joins array elements together to a string separated by defined separator. E.g. `{{ join .ScriptVars.MyArray \",\" }}`.
 
 ### Example
 
@@ -1751,11 +2335,29 @@ The following functions are supported:
   }
 }
 ```
+
+```json
+{
+    "action": "setscriptvar",
+    "settings": {
+        "name": "BookmarkCounter",
+        "type": "int",
+        "value": "1"
+    }
+},
+{
+  "action": "createbookmark",
+  "settings": {
+    "title": "Bookmark no {{ add .ScriptVars.BookmarkCounter 1 }}",
+    "description": "This bookmark will have the title Bookmark no 2"
+  }
+}
+```
+
 </details>
 
 
----
-</details>
+<hr></details>
 
 <details>
 <summary>scheduler</summary>
@@ -1776,11 +2378,30 @@ This section of the JSON file contains scheduler settings for the users in the l
 * `instance`: Instance number for this instance. Use different instance numbers when running the same script in multiple instances to make sure the randomization is different in each instance. Defaults to 1.
 * `reconnectsettings`: Settings for enabling re-connection attempts in case of unexpected disconnects.
   * `reconnect`: Enable re-connection attempts if the WebSocket is disconnected. Defaults to `false`.
-  * `backoff`: Re-connection backoff scheme. Defaults to `[0.0, 2.0, 2.0, 2.0, 2.0, 2.0]`, if left empty. An example backoff scheme could be `[0.0, 1.0, 10.0, 20.0]`:
+  * `backoff`: Re-connection backoff scheme. Defaults to `[0.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0]`, if left empty. An example backoff scheme could be `[0.0, 1.0, 10.0, 20.0]`:
       * `0.0`: If the WebSocket is disconnected, wait 0.0s before attempting to re-connect
       * `1.0`: If the previous attempt to re-connect failed, wait 1.0s before attempting again
       * `10.0`: If the previous attempt to re-connect failed, wait 10.0s before attempting again
       * `20.0`: If the previous attempt to re-connect failed, wait 20.0s before attempting again
+  * `mode`: Authentication mode
+      * `jwt`: JSON Web Token
+      * `ws`: WebSocket
+  * `jwtsettings`: (JWT only) Settings for the JWT connection.
+    * `keypath`: Local path to the JWT key file.
+    * `jwtheader`: JWT headers as an escaped JSON string. Custom headers to be added to the JWT header.
+    * `claims`: JWT claims as an escaped JSON string.
+    * `alg`: The signing method used for the JWT. Defaults to `RS512`, if omitted.
+        * For keyfiles in RSA format, supports `RS256`, `RS384` or `RS512`.
+        * For keyfiles in EC format, supports `ES256`, `ES384` or `ES512`.
+  * `wssettings`: (WebSocket only) Settings for the WebSocket connection.
+  * `server`: Qlik Sense host.
+  * `virtualproxy`: Prefix for the virtual proxy that handles the virtual users.
+  * `rawurl`: Define the connect URL manually instead letting the `openapp` action do it. **Note**: The protocol must be `wss://` or `ws://`.
+  * `port`: Set another port than default (`80` for http and `443` for https).
+  * `security`: Use TLS (SSL) (`true` / `false`).
+  * `allowuntrusted`: Allow untrusted (for example, self-signed) certificates (`true` / `false`). Defaults to `false`, if omitted.
+  * `appext`: Replace `app` in the connect URL for the `openapp` action. Defaults to `app`, if omitted.
+  * `headers`: Headers to use in requests.
 * `settings`: 
   * `executionTime`: Test execution time (seconds). The sessions are disconnected when the specified time has elapsed. Allowed values are positive integers. `-1` means an infinite execution time.
   * `iterations`: Number of iterations for each 'concurrent' user to repeat. Allowed values are positive integers. `-1` means an infinite number of iterations.
@@ -1849,8 +2470,7 @@ Simple scheduler set to attempt re-connection in case of an unexpected WebSocket
 }
 ```
 
----
-</details>
+<hr></details>
 
 <details>
 <summary>settings</summary>
@@ -1881,8 +2501,10 @@ This section of the JSON file contains timeout and logging settings for the load
       * `2` or `simple`: Simple, single-row summary
       * `3` or `extended`: Extended summary that includes statistics on each unique combination of action, label and app GUID
       * `4` or `full`: Same as extended, but with statistics on each unique combination of method and endpoint added
+  * `summaryFilename`: Name of summary file, only used when using summary type `file`. Defaults to `summary.json`
 * `outputs`: Used by some actions to save results to a file.
   * `dir`: Directory in which to save artifacts generated by the script (except log file).
+* `maxerrors`: Break execution if max errors exceeded. 0 - Do not break. Defaults to 0.
 
 ### Examples
 
@@ -1909,6 +2531,5 @@ This section of the JSON file contains timeout and logging settings for the load
 }
 ```
 
----
-</details>
+<hr></details>
 
