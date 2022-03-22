@@ -5,6 +5,7 @@ go 1.15
 require (
 	github.com/goccy/go-json v0.9.6 // indirect
 	github.com/gorilla/websocket v1.5.0 // indirect
+	github.com/hashicorp/go-multierror v1.1.1
 	github.com/json-iterator/go v1.1.12
 	github.com/pkg/errors v0.9.1
 	github.com/qlik-oss/gopherciser v0.14.20-0.20220318110411-31dddd6e2087
