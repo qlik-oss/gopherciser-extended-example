@@ -48,4 +48,4 @@ func init() {
 
 ## Example scheduler
 
-This package includes an example scheduler randomizing the period inbetween each user get introduced. An [example](examples/qlikcoresheetchanger.json) script using this can be found in the examples folder.
+This package includes [an example scheduler](myscheduler.go) randomizing the period inbetween each user get introduced. An [example](examples/qlikcoresheetchanger.json) script using this can be found in the examples folder.
