@@ -32,3 +32,8 @@ This will generate the following files:
 
 The documentation of documentation generation can be found
 [here](https://github.com/qlik-oss/gopherciser/blob/master/generatedocs/README.md#how-extending-existing-documetation).
+
+
+## Custom scheduler
+
+How to add a custom scheduler documented [here](schedulers/Readme.md)
