@@ -2366,6 +2366,15 @@ The following functions are supported:
 
 This section of the JSON file contains scheduler settings for the users in the load scenario.
 
+
+
+
+<details>
+<summary>myscheduler</summary>
+
+## Myscheduler
+
+Scheduler randomizing the period inbetween each user get introduced to simulation.
 * `type`: Type of scheduler
     * `simple`: Standard scheduler
 * `iterationtimebuffer`: 
@@ -2383,25 +2392,45 @@ This section of the JSON file contains scheduler settings for the users in the l
       * `1.0`: If the previous attempt to re-connect failed, wait 1.0s before attempting again
       * `10.0`: If the previous attempt to re-connect failed, wait 10.0s before attempting again
       * `20.0`: If the previous attempt to re-connect failed, wait 20.0s before attempting again
-  * `mode`: Authentication mode
-      * `jwt`: JSON Web Token
-      * `ws`: WebSocket
-  * `jwtsettings`: (JWT only) Settings for the JWT connection.
-    * `keypath`: Local path to the JWT key file.
-    * `jwtheader`: JWT headers as an escaped JSON string. Custom headers to be added to the JWT header.
-    * `claims`: JWT claims as an escaped JSON string.
-    * `alg`: The signing method used for the JWT. Defaults to `RS512`, if omitted.
-        * For keyfiles in RSA format, supports `RS256`, `RS384` or `RS512`.
-        * For keyfiles in EC format, supports `ES256`, `ES384` or `ES512`.
-  * `wssettings`: (WebSocket only) Settings for the WebSocket connection.
-  * `server`: Qlik Sense host.
-  * `virtualproxy`: Prefix for the virtual proxy that handles the virtual users.
-  * `rawurl`: Define the connect URL manually instead letting the `openapp` action do it. **Note**: The protocol must be `wss://` or `ws://`.
-  * `port`: Set another port than default (`80` for http and `443` for https).
-  * `security`: Use TLS (SSL) (`true` / `false`).
-  * `allowuntrusted`: Allow untrusted (for example, self-signed) certificates (`true` / `false`). Defaults to `false`, if omitted.
-  * `appext`: Replace `app` in the connect URL for the `openapp` action. Defaults to `app`, if omitted.
-  * `headers`: Headers to use in requests.
+* `settings`: 
+  * `concurrentUsers`: Number of concurrent users to simulate. Allowed values are positive integers.
+
+### Example
+
+```json
+"scheduler": {
+    "type": "myscheduler",
+    "settings": {
+        "concurrentusers": 10
+    }
+}
+```
+<hr></details>
+
+<details>
+<summary>simple</summary>
+
+## Simple scheduler
+
+Settings specific to the `simple` scheduler.
+
+* `type`: Type of scheduler
+    * `simple`: Standard scheduler
+* `iterationtimebuffer`: 
+  * `mode`: Time buffer mode. Defaults to `nowait`, if omitted.
+      * `nowait`: No time buffer in between the iterations.
+      * `constant`: Add a constant time buffer after each iteration. Defined by `duration`.
+      * `onerror`: Add a time buffer in case of an error. Defined by `duration`.
+      * `minduration`: Add a time buffer if the iteration duration is less than `duration`.
+  * `duration`: Duration of the time buffer (for example, `500ms`, `30s` or `1m10s`). Valid time units are `ns`, `us` (or `µs`), `ms`, `s`, `m`, and `h`.
+* `instance`: Instance number for this instance. Use different instance numbers when running the same script in multiple instances to make sure the randomization is different in each instance. Defaults to 1.
+* `reconnectsettings`: Settings for enabling re-connection attempts in case of unexpected disconnects.
+  * `reconnect`: Enable re-connection attempts if the WebSocket is disconnected. Defaults to `false`.
+  * `backoff`: Re-connection backoff scheme. Defaults to `[0.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0, 2.0]`, if left empty. An example backoff scheme could be `[0.0, 1.0, 10.0, 20.0]`:
+      * `0.0`: If the WebSocket is disconnected, wait 0.0s before attempting to re-connect
+      * `1.0`: If the previous attempt to re-connect failed, wait 1.0s before attempting again
+      * `10.0`: If the previous attempt to re-connect failed, wait 10.0s before attempting again
+      * `20.0`: If the previous attempt to re-connect failed, wait 20.0s before attempting again
 * `settings`: 
   * `executionTime`: Test execution time (seconds). The sessions are disconnected when the specified time has elapsed. Allowed values are positive integers. `-1` means an infinite execution time.
   * `iterations`: Number of iterations for each 'concurrent' user to repeat. Allowed values are positive integers. `-1` means an infinite number of iterations.
@@ -2469,6 +2498,8 @@ Simple scheduler set to attempt re-connection in case of an unexpected WebSocket
     }
 }
 ```
+
+<hr></details>
 
 <hr></details>
 

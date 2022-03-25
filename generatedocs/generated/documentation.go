@@ -168,6 +168,17 @@ var (
 		},
 	}
 
+	Schedulers = map[string]common.DocEntry{
+		"myscheduler": {
+			Description: "## Myscheduler\n\nScheduler randomizing the period inbetween each user get introduced to simulation.",
+			Examples:    "### Example\n\n```json\n\"scheduler\": {\n    \"type\": \"myscheduler\",\n    \"settings\": {\n        \"concurrentusers\": 10\n    }\n}\n```",
+		},
+		"simple": {
+			Description: "## Simple scheduler\n\nSettings specific to the `simple` scheduler.\n",
+			Examples:    "### Using `reconnectsettings`\n\nIf `reconnectsettings.reconnect` is enabled, the following is attempted:\n\n1. Re-connect the WebSocket.\n2. Get the currently opened app in the re-attached engine session.\n3. Re-subscribe to the same object as before the disconnection.\n4. If successful, the action during which the re-connect happened is logged as a successful action with `action` and `label` changed to `Reconnect(action)` and `Reconnect(label)`.\n5. Restart the action that was executed when the disconnection occurred (unless it is a `thinktime` action, which will not be restarted).\n6. Log an info row with info type `WebsocketReconnect` and with a semicolon-separated `details` section as follows: \"success=`X`;attempts=`Y`;TimeSpent=`Z`\"\n    * `X`: True/false\n    * `Y`: An integer representing the number of re-connection attempts\n    * `Z`: The time spent re-connecting (ms)\n\n### Example\n\nSimple scheduler settings:\n\n```json\n\"scheduler\": {\n   \"type\": \"simple\",\n   \"settings\": {\n       \"executiontime\": 120,\n       \"iterations\": -1,\n       \"rampupdelay\": 7.0,\n       \"concurrentusers\": 10\n   },\n   \"iterationtimebuffer\" : {\n       \"mode\": \"onerror\",\n       \"duration\" : \"5s\"\n   },\n   \"instance\" : 2\n}\n```\n\nSimple scheduler set to attempt re-connection in case of an unexpected WebSocket disconnection: \n\n```json\n\"scheduler\": {\n   \"type\": \"simple\",\n   \"settings\": {\n       \"executiontime\": 120,\n       \"iterations\": -1,\n       \"rampupdelay\": 7.0,\n       \"concurrentusers\": 10\n   },\n   \"iterationtimebuffer\" : {\n       \"mode\": \"onerror\",\n       \"duration\" : \"5s\"\n   },\n    \"reconnectsettings\" : {\n      \"reconnect\" : true\n    }\n}\n```\n",
+		},
+	}
+
 	Params = map[string][]string{
 		"applybookmark.selectionsonly":                    {"Apply selections only."},
 		"appselection.app":                                {"App name or app GUID (supports the use of [session variables](#session_variables)). Used with `appmode` set to `guid` or `name`."},
@@ -213,6 +224,7 @@ var (
 		"config.loginSettings.settings.directory":         {"Directory to set for the users."},
 		"config.loginSettings.settings.prefix":            {"Prefix to add to the username, so that it will be `prefix_{session}`."},
 		"config.loginSettings.type":                       {"Type of login request", "`prefix`: Add a prefix (specified by the `prefix` setting below) to the username, so that it will be `prefix_{session}`.", "`userlist`: List of users as specified by the `userList` setting below.", "`fromfile`: List of users from a file with 1 user per row and the format `username;directory;password`", "`none`: Do not add a prefix to the username, so that it will be `{session}`."},
+		"config.myscheduler.settings":                     {""},
 		"config.scenario":                                 {"This section of the JSON file contains the actions that are performed in the load scenario."},
 		"config.scenario.action":                          {"Name of the action to execute."},
 		"config.scenario.disabled":                        {"(optional) Disable action (`true` / `false`). If set to `true`, the action is not executed."},
@@ -371,7 +383,7 @@ var (
 		},
 		"scheduler": {
 			Description: "## Scheduler section\n\nThis section of the JSON file contains scheduler settings for the users in the load scenario.\n",
-			Examples:    "### Using `reconnectsettings`\n\nIf `reconnectsettings.reconnect` is enabled, the following is attempted:\n\n1. Re-connect the WebSocket.\n2. Get the currently opened app in the re-attached engine session.\n3. Re-subscribe to the same object as before the disconnection.\n4. If successful, the action during which the re-connect happened is logged as a successful action with `action` and `label` changed to `Reconnect(action)` and `Reconnect(label)`.\n5. Restart the action that was executed when the disconnection occurred (unless it is a `thinktime` action, which will not be restarted).\n6. Log an info row with info type `WebsocketReconnect` and with a semicolon-separated `details` section as follows: \"success=`X`;attempts=`Y`;TimeSpent=`Z`\"\n    * `X`: True/false\n    * `Y`: An integer representing the number of re-connection attempts\n    * `Z`: The time spent re-connecting (ms)\n\n### Example\n\nSimple scheduler settings:\n\n```json\n\"scheduler\": {\n   \"type\": \"simple\",\n   \"settings\": {\n       \"executiontime\": 120,\n       \"iterations\": -1,\n       \"rampupdelay\": 7.0,\n       \"concurrentusers\": 10\n   },\n   \"iterationtimebuffer\" : {\n       \"mode\": \"onerror\",\n       \"duration\" : \"5s\"\n   },\n   \"instance\" : 2\n}\n```\n\nSimple scheduler set to attempt re-connection in case of an unexpected WebSocket disconnection: \n\n```json\n\"scheduler\": {\n   \"type\": \"simple\",\n   \"settings\": {\n       \"executiontime\": 120,\n       \"iterations\": -1,\n       \"rampupdelay\": 7.0,\n       \"concurrentusers\": 10\n   },\n   \"iterationtimebuffer\" : {\n       \"mode\": \"onerror\",\n       \"duration\" : \"5s\"\n   },\n    \"reconnectsettings\" : {\n      \"reconnect\" : true\n    }\n}\n```\n",
+			Examples:    "\n",
 		},
 		"settings": {
 			Description: "## Settings section\n\nThis section of the JSON file contains timeout and logging settings for the load scenario.\n",
