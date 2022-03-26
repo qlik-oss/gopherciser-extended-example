@@ -247,6 +247,8 @@ github.com/qlik-oss/enigma-go/v3 v3.2.0 h1:CAftSLTuY7CVO28Qgqbqa5yUDduQg9bcNMF6p
 github.com/qlik-oss/enigma-go/v3 v3.2.0/go.mod h1:KYkVVt1EG0wNTTJQB9nrHKaLwbbYOZMKrIUoxHUhGIg=
 github.com/qlik-oss/gopherciser v0.14.20-0.20220318110411-31dddd6e2087 h1:f/hYWcrO/iBAV6CHL3YpGLdaQaOP1nglis6syL8dthg=
 github.com/qlik-oss/gopherciser v0.14.20-0.20220318110411-31dddd6e2087/go.mod h1:3LaSP/Tcfsp5OYYyhM/fXSH1yaX14Q66VYPLmN5ZGFc=
+github.com/qlik-oss/gopherciser v0.15.0 h1:s5ShhXchYvPnd59DuwA+nWJi4is/6K2oSgvfB15jzko=
+github.com/qlik-oss/gopherciser v0.15.0/go.mod h1:2TnyfukufoB/zm8ScJTz2kZC5Y0H1eoiLn6x9sG9GYM=
 github.com/rogpeppe/go-internal v1.3.0/go.mod h1:M8bDsm7K2OlrFYOpmOWEs/qY81heoFRclV5y23lUDJ4=
 github.com/rs/dnscache v0.0.0-20211102005908-e0241e321417 h1:Lt9DzQALzHoDwMBGJ6v8ObDPR0dzr2a6sXTB1Fq7IHs=
 github.com/rs/dnscache v0.0.0-20211102005908-e0241e321417/go.mod h1:qe5TWALJ8/a1Lqznoc5BDHpYX/8HU60Hm2AwRmqzxqA=
