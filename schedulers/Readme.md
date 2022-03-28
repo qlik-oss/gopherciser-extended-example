@@ -46,6 +46,15 @@ func init() {
 }
 ```
 
+### Generated documentation
+
+To have documentation for your scheduler included in the generated documentation, do
+
+1. Add a folder in `data/schedulers/name_of_your_scheduler`.
+2. Add two files in this folder `description.md` and `examples.md` with description and example of the scheduler.
+3. Add a `doc-key`tag for each setting of your scheduler and add an entry with same key in `data/params.json`.
+4. Generate files by running `go generate`.
+
 ## Example scheduler
 
 This package includes [an example scheduler](myscheduler.go) randomizing the period inbetween each user get introduced. An [example](examples/qlikcoresheetchanger.json) script using this can be found in the examples folder.
