@@ -1,6 +1,6 @@
 module github.com/qlik-oss/gopherciser-extended-example
 
-go 1.15
+go 1.19
 
 require (
 	github.com/gorilla/websocket v1.5.0 // indirect
