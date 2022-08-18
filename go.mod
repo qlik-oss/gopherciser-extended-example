@@ -1,6 +1,6 @@
 module github.com/qlik-oss/gopherciser-extended-example
 
-go 1.15
+go 1.17
 
 require (
 	github.com/gorilla/websocket v1.5.0 // indirect
@@ -11,4 +11,3 @@ require (
 	gopkg.in/check.v1 v1.0.0-20201130134442-10cb98267c6c // indirect
 )
 
-replace github.com/eventials/go-tus => github.com/andrewmostello/go-tus v0.0.0-20200314041820-904a9904af9a
