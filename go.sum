@@ -279,6 +279,8 @@ github.com/qlik-oss/gopherciser v0.17.1 h1:+0lkwFS7Qn9ys3kNeIqs12o7gAOFpyLcGawnx
 github.com/qlik-oss/gopherciser v0.17.1/go.mod h1:4IwvxkjIJtqHJzTxgjWOYaseyDT1BBlQSbhDEug5xG0=
 github.com/qlik-oss/gopherciser v0.17.2 h1:a3p7MYtv42GAIHR6kV8/oIYiTNQ1CqQqI2eHuG1qg5c=
 github.com/qlik-oss/gopherciser v0.17.2/go.mod h1:Mmy/QOX4RQRSSgct2sPwYzG53lOz3AZHk90ePwc5o2U=
+github.com/qlik-oss/gopherciser v0.17.3 h1:DaOgVvCkO83Lt3WrbIoyMjoZXuSGYxtuuJ4e7R4Uf8k=
+github.com/qlik-oss/gopherciser v0.17.3/go.mod h1:Mmy/QOX4RQRSSgct2sPwYzG53lOz3AZHk90ePwc5o2U=
 github.com/rogpeppe/go-internal v1.3.0/go.mod h1:M8bDsm7K2OlrFYOpmOWEs/qY81heoFRclV5y23lUDJ4=
 github.com/rs/dnscache v0.0.0-20211102005908-e0241e321417 h1:Lt9DzQALzHoDwMBGJ6v8ObDPR0dzr2a6sXTB1Fq7IHs=
 github.com/rs/dnscache v0.0.0-20211102005908-e0241e321417/go.mod h1:qe5TWALJ8/a1Lqznoc5BDHpYX/8HU60Hm2AwRmqzxqA=
