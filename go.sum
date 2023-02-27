@@ -103,6 +103,8 @@ github.com/golang-jwt/jwt/v4 v4.4.2 h1:rcc4lwaZgFMCZ5jxF9ABolDcIHdBytAFgqFPbSJQA
 github.com/golang-jwt/jwt/v4 v4.4.2/go.mod h1:m21LjoU+eqJr34lmDMbreY2eSTRJ1cv77w39/MY0Ch0=
 github.com/golang-jwt/jwt/v4 v4.4.3 h1:Hxl6lhQFj4AnOX6MLrsCb/+7tCj7DxP7VA+2rDIq5AU=
 github.com/golang-jwt/jwt/v4 v4.4.3/go.mod h1:m21LjoU+eqJr34lmDMbreY2eSTRJ1cv77w39/MY0Ch0=
+github.com/golang-jwt/jwt/v4 v4.5.0 h1:7cYmW1XlMY7h7ii7UhUyChSgS5wUJEnm9uZVTGqOWzg=
+github.com/golang-jwt/jwt/v4 v4.5.0/go.mod h1:m21LjoU+eqJr34lmDMbreY2eSTRJ1cv77w39/MY0Ch0=
 github.com/golang/glog v0.0.0-20160126235308-23def4e6c14b/go.mod h1:SBH7ygxi8pfUlaOkMMuAQtPIUF8ecWP5IEl/CR7VP2Q=
 github.com/golang/groupcache v0.0.0-20190702054246-869f871628b6/go.mod h1:cIg4eruTrX1D+g88fzRXU5OdNfaM+9IcxsU14FzY7Hc=
 github.com/golang/groupcache v0.0.0-20191227052852-215e87163ea7/go.mod h1:cIg4eruTrX1D+g88fzRXU5OdNfaM+9IcxsU14FzY7Hc=
@@ -283,6 +285,8 @@ github.com/qlik-oss/gopherciser v0.17.3 h1:DaOgVvCkO83Lt3WrbIoyMjoZXuSGYxtuuJ4e7
 github.com/qlik-oss/gopherciser v0.17.3/go.mod h1:Mmy/QOX4RQRSSgct2sPwYzG53lOz3AZHk90ePwc5o2U=
 github.com/qlik-oss/gopherciser v0.17.4 h1:+F7J4HC9nPXbAvngweKhvkMYKSq1bNULUpXGFENqcDU=
 github.com/qlik-oss/gopherciser v0.17.4/go.mod h1:NDx5Opvo2y8yt9EfKNs/SmoPBsW3fqG56iOARFGdIsI=
+github.com/qlik-oss/gopherciser v0.17.5 h1:gGAwRNbD+60jWKI8NGy85siihcZjW/XmMeiXO69n3co=
+github.com/qlik-oss/gopherciser v0.17.5/go.mod h1:JrgfQ8SWHpCMPlE2FTaba3LY7KGlGdhlA3Vz7xgtPXc=
 github.com/rogpeppe/go-internal v1.3.0/go.mod h1:M8bDsm7K2OlrFYOpmOWEs/qY81heoFRclV5y23lUDJ4=
 github.com/rs/dnscache v0.0.0-20211102005908-e0241e321417 h1:Lt9DzQALzHoDwMBGJ6v8ObDPR0dzr2a6sXTB1Fq7IHs=
 github.com/rs/dnscache v0.0.0-20211102005908-e0241e321417/go.mod h1:qe5TWALJ8/a1Lqznoc5BDHpYX/8HU60Hm2AwRmqzxqA=
