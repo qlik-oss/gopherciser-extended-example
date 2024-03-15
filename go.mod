@@ -8,7 +8,7 @@ require (
 	github.com/hashicorp/go-multierror v1.1.1
 	github.com/json-iterator/go v1.1.12
 	github.com/pkg/errors v0.9.1
-	github.com/qlik-oss/gopherciser v0.18.0
+	github.com/qlik-oss/gopherciser v0.18.2
 )
 
 require (
@@ -47,5 +47,5 @@ require (
 	golang.org/x/net v0.21.0 // indirect
 	golang.org/x/sync v0.3.0 // indirect
 	golang.org/x/sys v0.17.0 // indirect
-	google.golang.org/protobuf v1.32.0 // indirect
+	google.golang.org/protobuf v1.33.0 // indirect
 )
