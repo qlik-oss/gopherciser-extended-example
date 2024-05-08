@@ -2,8 +2,6 @@ module github.com/qlik-oss/gopherciser-extended-example
 
 go 1.21
 
-toolchain go1.22.2
-
 require (
 	github.com/hashicorp/go-multierror v1.1.1
 	github.com/json-iterator/go v1.1.12
