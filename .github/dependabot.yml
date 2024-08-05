@@ -1,0 +1,6 @@
+updates:
+  # Maintain dependencies for go modules
+  - package-ecosystem: "gomod"
+    directory: "/"
+    schedule:
+      interval: "daily"
