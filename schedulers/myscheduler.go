@@ -81,7 +81,7 @@ func (sched MyScheduler) Execute(
 			return nil
 		}
 		user := users.GetNext(counters)
-		err := sched.Scheduler.StartNewUser(ctx, timeout, log, scenario, thread, outputsDir, user, 1, false, counters)
+		err := sched.Scheduler.StartNewUser(ctx, timeout, log, scenario, thread, outputsDir, user, 1, false, counters, nil)
 		if err != nil {
 			mErr = multierror.Append(mErr, err)
 		}
