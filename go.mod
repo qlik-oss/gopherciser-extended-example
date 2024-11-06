@@ -1,7 +1,6 @@
 module github.com/qlik-oss/gopherciser-extended-example
 
-go 1.21
-toolchain go1.23.2
+go 1.23
 
 require (
 	github.com/hashicorp/go-multierror v1.1.1
