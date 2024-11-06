@@ -74,8 +74,8 @@ github.com/prometheus/procfs v0.15.1 h1:YagwOFzUgYfKKHX6Dr+sHT7km/hxC76UB0leargg
 github.com/prometheus/procfs v0.15.1/go.mod h1:fB45yRUv8NstnjriLhBQLuOUt+WW4BsoGhij/e3PBqk=
 github.com/qlik-oss/enigma-go/v4 v4.2.0 h1:LUNQvRIOWjlBV56IK85QcJbjdkkgShfnK3bQX/qnnao=
 github.com/qlik-oss/enigma-go/v4 v4.2.0/go.mod h1:XE2m2KWbdrhMJxVskR4vIHTZlDcP2Sh88lbkd3f//pA=
-github.com/qlik-oss/gopherciser v0.19.3 h1:Uhn2CK1jzUKqjPf2oQyXlzPiGRxPzg0D9qX/BQlGz1w=
-github.com/qlik-oss/gopherciser v0.19.3/go.mod h1:8xDlmpClrb/Mp8NWxCuzaNOlGIT62zDL82uqtaVHZjA=
+github.com/qlik-oss/gopherciser v0.20.1 h1:UwR7npp6tPwv86M3ESq07uzln32H6Yzq0EZAB/wUbmA=
+github.com/qlik-oss/gopherciser v0.20.1/go.mod h1:2MqALpQR82wLRPzGBZWSpIztayi6/C2Gydy8q2s4Z30=
 github.com/rs/dnscache v0.0.0-20230804202142-fc85eb664529 h1:18kd+8ZUlt/ARXhljq+14TwAoKa61q6dX8jtwOf6DH8=
 github.com/rs/dnscache v0.0.0-20230804202142-fc85eb664529/go.mod h1:qe5TWALJ8/a1Lqznoc5BDHpYX/8HU60Hm2AwRmqzxqA=
 github.com/rs/xid v1.5.0/go.mod h1:trrq9SKmegXys3aeAKXMUTdJsYXVwGY3RLcfgqegfbg=
