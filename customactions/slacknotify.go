@@ -48,7 +48,7 @@ func (settings SlackNotifySettings) Execute(sessionState *session.State, actionS
 			actionState.AddErrors(errors.WithStack(err))
 			return
 		}
-		sessionState.Rest.SetClient(client)
+		sessionState.Rest.SetClient(client, "", "https://")
 	}
 
 	// Add data for custom variables
