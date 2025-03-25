@@ -62,7 +62,7 @@ func (sched MyScheduler) Execute(
 	if counters == nil {
 		return errors.New("execution counters are nil")
 	}
-	sched.Scheduler.ConnectionSettings = connectionSettings
+	sched.ConnectionSettings = connectionSettings
 
 	// Create a seeded randomizer for reproducible results
 	seededRandomizer := randomizer.NewSeededRandomizer(12345)
@@ -81,7 +81,7 @@ func (sched MyScheduler) Execute(
 			return nil
 		}
 		user := users.GetNext(counters)
-		err := sched.Scheduler.StartNewUser(ctx, timeout, log, scenario, thread, outputsDir, user, 1, false, counters, nil)
+		err := sched.StartNewUser(ctx, timeout, log, scenario, thread, outputsDir, user, 1, false, counters, nil)
 		if err != nil {
 			mErr = multierror.Append(mErr, err)
 		}
