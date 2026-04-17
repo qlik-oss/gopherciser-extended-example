@@ -1,6 +1,8 @@
 package customactions
 
 import (
+	"net/url"
+
 	jsoniter "github.com/json-iterator/go"
 
 	"github.com/pkg/errors"
@@ -48,7 +50,12 @@ func (settings SlackNotifySettings) Execute(sessionState *session.State, actionS
 			actionState.AddErrors(errors.WithStack(err))
 			return
 		}
-		sessionState.Rest.SetClient(client, "", "https://")
+		emptyUrl, err := url.Parse("https://")
+		if err != nil {
+			actionState.AddErrors(err)
+			return
+		}
+		sessionState.Rest.SetClient(client, emptyUrl)
 	}
 
 	// Add data for custom variables
