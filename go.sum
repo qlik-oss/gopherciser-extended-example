@@ -65,8 +65,8 @@ github.com/prometheus/procfs v0.21.1 h1:GljZCt+zSTS+NZq88cyQ1LjZ+RCHp3uVuabBWA5+
 github.com/prometheus/procfs v0.21.1/go.mod h1:aB55Cww9pdSJVHk0hUf0inxWyyjPogFIjmHKYgMKmtY=
 github.com/qlik-oss/enigma-go/v4 v4.5.0 h1:OsGccaxX8XtNPGE1GkcrPoNDbloOzMfWTwa63vQ/XdE=
 github.com/qlik-oss/enigma-go/v4 v4.5.0/go.mod h1:xL1G+OC/YGQJNed1/KwovqOfX8/IHvNslZ7LjX0Jg6U=
-github.com/qlik-oss/gopherciser v0.24.5 h1:D8B9oB3Va8Yijs2o2oHLyMRojESzWKXgASf5K7+Ebi8=
-github.com/qlik-oss/gopherciser v0.24.5/go.mod h1:djAA1GQrK/OM5Mk1vTAvgwwEJYuFr28N8EcSuF/nsIc=
+github.com/qlik-oss/gopherciser v0.24.6 h1:R3awFr8iiJTKH9sTAfXyiZP50da1j3e5RwLIA30iGtg=
+github.com/qlik-oss/gopherciser v0.24.6/go.mod h1:djAA1GQrK/OM5Mk1vTAvgwwEJYuFr28N8EcSuF/nsIc=
 github.com/rivo/uniseg v0.2.0/go.mod h1:J6wj4VEh+S6ZtnVlnTBMWIodfgj8LQOQFoIToxlJtxc=
 github.com/rivo/uniseg v0.4.7 h1:WUdvkW8uEhrYfLC4ZzdpI2ztxP1I582+49Oc5Mq64VQ=
 github.com/rivo/uniseg v0.4.7/go.mod h1:FN3SvrM+Zdj16jyLfmOkMNblXMcoc8DfTHruCPUcx88=
